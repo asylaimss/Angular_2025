@@ -1,0 +1,27 @@
+<div *ngIf="loading">Loading…</div>
+<div *ngIf="error">Item not found or error while loading.</div>
+
+<div *ngIf="!loading && !error && item" class="details">
+  <button (click)="goBack()">← Back to items</button>
+
+  <div class="details-content">
+    <img [src]="item.thumbnail" [alt]="item.title" />
+
+    <div class="info">
+      <h1>{{ item.title }}</h1>
+      <p>{{ item.description }}</p>
+
+      <ul>
+        <li><strong>Category:</strong> {{ item.category }}</li>
+        <li><strong>Brand:</strong> {{ item.brand }}</li>
+        <li><strong>Price:</strong> {{ item.price }}</li>
+        <li><strong>Rating:</strong> {{ item.rating }}</li>
+        <li><strong>Stock:</strong> {{ item.stock }}</li>
+        <li>
+          <strong>Discount:</strong> {{ item.discountPercentage }}%
+        </li>
+        <li><strong>ID:</strong> {{ item.id }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

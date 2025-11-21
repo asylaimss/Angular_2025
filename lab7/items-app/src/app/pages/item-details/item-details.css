@@ -1,0 +1,23 @@
+.details button {
+  margin-bottom: 12px;
+}
+
+.details-content {
+  display: flex;
+  gap: 20px;
+}
+
+.details-content img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.info ul {
+  padding-left: 18px;
+}
+
+.info li {
+  margin-bottom: 4px;
+}
