@@ -1,0 +1,31 @@
+.item-details {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.image {
+  width: 300px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 18px;
+  color: #444;
+  margin: 10px 0 20px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2b7a0b;
+}
+
+.loading {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 40px;
+}

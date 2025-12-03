@@ -1,0 +1,19 @@
+<div *ngIf="loading$ | async" class="loading">
+  Loading item...
+</div>
+
+<div *ngIf="!(loading$ | async) && (item$ | async) as item" class="item-details">
+
+  <img [src]="item.thumbnail" alt="" class="image">
+
+  <h1>{{ item.title }}</h1>
+
+  <p class="description">{{ item.description }}</p>
+
+  <h3 class="price">{{ item.price }}$</h3>
+
+</div>
+
+<div *ngIf="!(loading$ | async) && !(item$ | async)">
+  <p>Item not found.</p>
+</div>

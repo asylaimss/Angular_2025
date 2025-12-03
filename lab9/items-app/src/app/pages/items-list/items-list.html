@@ -1,0 +1,15 @@
+<div *ngIf="loading$ | async" class="loading">Loading...</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="items-grid">
+    <a
+      class="item-card"
+      *ngFor="let item of (items$ | async)"
+      [routerLink]="['/items', item.id]"
+    >
+      <img [src]="item.thumbnail" alt="">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.price }}$</p>
+    </a>
+  </div>
+</div>
