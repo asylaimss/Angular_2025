@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import { AuthService } from '@services/auth.service';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import { selectFavorites } from '../../items/state/favorites.selectors';
+import { map } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-navbar',
+  standalone: true,
+  templateUrl: './navbar.html',
+  styleUrls: ['./navbar.css'],
+  imports: [NgIf, AsyncPipe, RouterLink]
+})
+export class NavbarComponent {
+
+  favoritesCount$ = this.store.select(selectFavorites).pipe(
+    map(favs => favs.length)
+  );
+
+  constructor(
+    public auth: AuthService,
+    private store: Store
+  ) {}
+}

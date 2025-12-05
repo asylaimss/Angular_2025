@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="image-box">
+    <img [src]="item.thumbnail" [alt]="item.title" />
+  </div>
+
+  <h3 class="title">{{ item.title }}</h3>
+  <p class="brand">{{ item.brand }}</p>
+
+  <p class="description">
+    {{ item.description | slice:0:100 }}...
+  </p>
+
+  <div class="footer">
+    <span class="price">$ {{ item.price }}</span>
+    <a [routerLink]="['/items', item.id]" class="details-btn">
+      View details →
+    </a>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="details-container" *ngIf="item$ | async as item">
+  <div class="details-image-block">
+    <img [src]="item.thumbnail" [alt]="item.title" class="details-main-image" />
+
+    <div class="details-thumbs">
+      <img
+        *ngFor="let img of item.images"
+        [src]="img"
+        [alt]="item.title"
+        class="details-thumb"
+      />
+    </div>
+  </div>
+
+  <div class="details-info-block">
+    <h1 class="details-title">{{ item.title }}</h1>
+    <p class="details-brand">{{ item.brand }}</p>
+    <p class="details-description">{{ item.description }}</p>
+
+    <div class="details-price-row">
+      <span class="details-price">${{ item.price }}</span>
+    </div>
+
+    <button class="fav-button" (click)="addToFavorites(item)">
+      ❤️ Add to Favorites
+    </button>
+  </div>
+</div>
