@@ -3,330 +3,370 @@
     "id": 1,
     "title": "Dior Blooming Lip Tint",
     "brand": "Dior",
-    "description": "Luxurious high-end lip tint with a soft nude-pink tone and comfortable glossy finish.",
+    "description": "Lightweight luxurious lip tint with soft nude-pink finish.",
     "category": "Lips",
     "price": 36,
     "rating": 4.8,
-    "thumbnail": "https://example.com/lips1.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1596461404969-9ae70f1b2753?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/lips1_1.jpg",
-      "https://example.com/lips1_2.jpg"
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
     "id": 2,
     "title": "Chanel Velvet Matte Lipstick",
     "brand": "Chanel",
-    "description": "Iconic velvet matte lipstick with rich pigment and a soft, blurred luxury finish.",
+    "description": "Velvet matte luxury lipstick with rich long-lasting pigment.",
     "category": "Lips",
     "price": 37,
     "rating": 4.9,
-    "thumbnail": "https://example.com/lips2.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1600180758890-6e8ad2b71d40?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/lips2_1.jpg",
-      "https://example.com/lips2_2.jpg"
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
     "id": 3,
     "title": "YSL Rouge Couture Shine",
     "brand": "YSL",
-    "description": "Creamy shine lipstick with nude glossy finish and lightweight texture.",
+    "description": "Creamy shine lipstick with luminous nude finish.",
     "category": "Lips",
     "price": 38,
     "rating": 4.7,
-    "thumbnail": "https://example.com/lips3.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/lips3_1.jpg",
-      "https://example.com/lips3_2.jpg"
+      "https://images.unsplash.com/photo-1596461404969-9ae70f1b2753?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
     "id": 4,
     "title": "Givenchy Gloss Interdit Vinyl",
     "brand": "Givenchy",
-    "description": "High-shine lip gloss with soft plumping effect and luxury packaging.",
+    "description": "High-shine plumping gloss with premium finish.",
     "category": "Lips",
     "price": 39,
     "rating": 4.8,
-    "thumbnail": "https://example.com/lips4.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/lips4_1.jpg",
-      "https://example.com/lips4_2.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
     "id": 5,
-    "title": "Armani Lip Maestro Liquid",
+    "title": "Armani Lip Maestro",
     "brand": "Armani",
-    "description": "Velvet liquid lipstick with intense nude pigment and comfortable wear.",
+    "description": "Velvet liquid lip color with deep luxurious tone.",
     "category": "Lips",
     "price": 40,
     "rating": 4.9,
-    "thumbnail": "https://example.com/lips5.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1598091685385-5c26b73b4c53?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/lips5_1.jpg",
-      "https://example.com/lips5_2.jpg"
+      "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 6,
     "title": "Tom Ford Glow Radiance Foundation",
     "brand": "Tom Ford",
-    "description": "Premium luminous foundation for a soft-focus radiant complexion and all-day wear.",
+    "description": "Radiant luxury foundation with soft-focus effect.",
     "category": "Face",
     "price": 56,
     "rating": 4.8,
-    "thumbnail": "https://example.com/face6.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face6_1.jpg"
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 7,
     "title": "Armani Luminous Silk Powder",
     "brand": "Armani",
-    "description": "Silky finishing powder that sets makeup with a natural luminous veil.",
+    "description": "Silky finishing powder for natural glow.",
     "category": "Face",
     "price": 57,
     "rating": 4.9,
-    "thumbnail": "https://example.com/face7.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face7_1.jpg"
+      "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 8,
     "title": "Dior Forever Skin Correct Concealer",
     "brand": "Dior",
-    "description": "High-coverage concealer with smoothing effect and comfortable creamy texture.",
+    "description": "Full-coverage creamy concealer with smoothing effect.",
     "category": "Face",
     "price": 58,
     "rating": 4.7,
-    "thumbnail": "https://example.com/face8.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face8_1.jpg"
+      "https://images.unsplash.com/photo-1598091685385-5c26b73b4c53?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 9,
     "title": "Charlotte Tilbury Airbrush Bronzer",
     "brand": "Charlotte Tilbury",
-    "description": "Soft matte bronzer for a sun-kissed airbrushed finish.",
+    "description": "Soft matte bronzer for sun-kissed airbrushed finish.",
     "category": "Face",
     "price": 59,
     "rating": 4.8,
-    "thumbnail": "https://example.com/face9.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face9_1.jpg"
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1596461404969-9ae70f1b2753?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 10,
     "title": "Fenty Beauty Diamond Bomb Highlighter",
     "brand": "Fenty Beauty",
-    "description": "Intense highlighter with wet diamond effect for a luxury glow.",
+    "description": "Ultra-reflective luxury highlighter with wet-glow effect.",
     "category": "Face",
     "price": 60,
     "rating": 4.9,
-    "thumbnail": "https://example.com/face10.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1616469829935-5bbfcd508c6c?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face10_1.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 11,
-    "title": "NARS Soft Matte Complete Foundation",
+    "title": "NARS Soft Matte Foundation",
     "brand": "NARS",
-    "description": "Soft-matte foundation with buildable coverage and long-lasting comfort.",
+    "description": "Longwear matte foundation with natural finish.",
     "category": "Face",
     "price": 61,
     "rating": 4.8,
-    "thumbnail": "https://example.com/face11.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/face11_1.jpg"
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 12,
     "title": "Dior Iconic Overcurl Mascara",
     "brand": "Dior",
-    "description": "Iconic volumizing mascara that lifts and curls lashes in a single coat.",
+    "description": "Volumizing mascara for curled dramatic lashes.",
     "category": "Eyes",
     "price": 42,
     "rating": 4.8,
-    "thumbnail": "https://example.com/eyes12.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/eyes12_1.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 13,
-    "title": "Charlotte Tilbury Luxury Eyeshadow Quad",
+    "title": "Charlotte Tilbury Eyeshadow Quad",
     "brand": "Charlotte Tilbury",
-    "description": "Quad of nude and rose-gold shadows for effortless day-to-night looks.",
+    "description": "Luxury soft-pink eyeshadow palette for day & night looks.",
     "category": "Eyes",
     "price": 43,
     "rating": 4.9,
-    "thumbnail": "https://example.com/eyes13.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/eyes13_1.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1596461404969-9ae70f1b2753?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 14,
     "title": "Chanel Ombre Première Cream Shadow",
     "brand": "Chanel",
-    "description": "Cream eyeshadow with a soft satin glow and luxurious texture.",
+    "description": "Silky cream eyeshadow with satin nude finish.",
     "category": "Eyes",
     "price": 44,
     "rating": 4.7,
-    "thumbnail": "https://example.com/eyes14.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/eyes14_1.jpg"
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 15,
     "title": "YSL Couture Brow Gel",
     "brand": "YSL",
-    "description": "Tinted brow gel for natural fluffy brows with a polished finish.",
+    "description": "Tinted brow gel for fluffy luxury brows.",
     "category": "Eyes",
     "price": 45,
     "rating": 4.8,
-    "thumbnail": "https://example.com/eyes15.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/eyes15_1.jpg"
+      "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 16,
     "title": "NARS Precision Liquid Eyeliner",
     "brand": "NARS",
-    "description": "Ultra-thin liquid eyeliner with deep black pigment and precise tip.",
+    "description": "Ultra-thin eyeliner with jet-black pigment.",
     "category": "Eyes",
     "price": 46,
     "rating": 4.7,
-    "thumbnail": "https://example.com/eyes16.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/eyes16_1.jpg"
+      "https://images.unsplash.com/photo-1598091685385-5c26b73b4c53?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 17,
-    "title": "Dior Gold Face Brush #12",
+    "title": "Dior Gold Face Brush",
     "brand": "Dior",
-    "description": "Luxury face brush with soft bristles and gold-toned details.",
+    "description": "Premium gold-detailed face brush for powders & bronzers.",
     "category": "Tools",
     "price": 37,
     "rating": 4.6,
-    "thumbnail": "https://example.com/tools17.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/tools17_1.jpg"
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 18,
     "title": "Chanel Velvet Beauty Sponge",
     "brand": "Chanel",
-    "description": "Velvet beauty sponge for seamless foundation and concealer blending.",
+    "description": "Soft velvet sponge for airbrushed application.",
     "category": "Tools",
     "price": 38,
     "rating": 4.7,
-    "thumbnail": "https://example.com/tools18.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/tools18_1.jpg"
+      "https://images.unsplash.com/photo-1596461404969-9ae70f1b2753?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 19,
     "title": "Lancome Silk Powder Puff",
     "brand": "Lancome",
-    "description": "Silky-soft powder puff that applies powder in a thin, even veil.",
+    "description": "Soft silky puff for flawless application.",
     "category": "Tools",
     "price": 39,
     "rating": 4.8,
-    "thumbnail": "https://example.com/tools19.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/tools19_1.jpg"
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583241802177-811088d79f67?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 20,
-    "title": "Armani Black Travel Makeup Case",
+    "title": "Armani Black Makeup Case",
     "brand": "Armani",
-    "description": "Compact black makeup case with minimal branding and gold zipper.",
+    "description": "Luxury black cosmetic case with gold zip.",
     "category": "Tools",
     "price": 40,
     "rating": 4.9,
-    "thumbnail": "https://example.com/tools20.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1616469829935-5bbfcd508c6c?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/tools20_1.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 21,
     "title": "Tatcha Silk Canvas Primer",
     "brand": "Tatcha",
-    "description": "Silky primer that blurs pores and creates a smooth makeup base.",
+    "description": "Silky blurring primer for luxury smooth skin.",
     "category": "Skin Prep",
     "price": 66,
     "rating": 4.8,
-    "thumbnail": "https://example.com/skin21.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/skin21_1.jpg"
+      "https://images.unsplash.com/photo-1616469829935-5bbfcd508c6c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 22,
     "title": "Dior Backstage Glow Primer",
     "brand": "Dior",
-    "description": "Radiance-boosting primer that gives skin a backstage glow.",
+    "description": "Radiance primer with soft golden-pink sheen.",
     "category": "Skin Prep",
     "price": 67,
     "rating": 4.9,
-    "thumbnail": "https://example.com/skin22.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/skin22_1.jpg"
+      "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598514982271-1e319aa8b0ca?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 23,
     "title": "Chanel Hydra Beauty Essence Mist",
     "brand": "Chanel",
-    "description": "Hydrating face mist that refreshes and preps skin for makeup.",
+    "description": "Hydrating facial mist for soft glowing skin.",
     "category": "Skin Prep",
     "price": 68,
     "rating": 4.7,
-    "thumbnail": "https://example.com/skin23.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/skin23_1.jpg"
+      "https://images.unsplash.com/photo-1596464716127-fd5e22b0f5d4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 24,
-    "title": "YSL Top Secrets Instant Moisture",
+    "title": "YSL Top Secrets Moisture Glow",
     "brand": "YSL",
-    "description": "Lightweight moisturizer that smooths and primes skin for makeup.",
+    "description": "Instant moisture primer for soft luminous finish.",
     "category": "Skin Prep",
     "price": 69,
     "rating": 4.8,
-    "thumbnail": "https://example.com/skin24.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/skin24_1.jpg"
+      "https://images.unsplash.com/photo-1616469829935-5bbfcd508c6c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1556228578-470bd6c3d9ef?auto=format&fit=crop&w=600&q=80"
     ]
   },
+
   {
     "id": 25,
-    "title": "Guerlain L'Or Radiance Primer",
+    "title": "Guerlain Gold Radiance Primer",
     "brand": "Guerlain",
-    "description": "Radiance primer infused with gold flecks for a luxury luminous base.",
+    "description": "Luxury glow primer infused with gold flakes.",
     "category": "Skin Prep",
     "price": 70,
     "rating": 4.9,
-    "thumbnail": "https://example.com/skin25.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1616469829935-5bbfcd508c6c?auto=format&fit=crop&w=600&q=80",
     "images": [
-      "https://example.com/skin25_1.jpg"
+      "https://images.unsplash.com/photo-1601044070180-9f7b1f9dd168?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600180756828-74b08354a249?auto=format&fit=crop&w=600&q=80"
     ]
   }
 ]
