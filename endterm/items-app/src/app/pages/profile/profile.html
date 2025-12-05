@@ -1,0 +1,8 @@
+<div class="profile-box">
+  <h2>Your Profile</h2>
+
+  <p>Logged in as:</p>
+  <strong>{{ (user$ | async)?.email }}</strong>
+
+  <button (click)="logout()">Logout</button>
+</div>

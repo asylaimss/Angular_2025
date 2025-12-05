@@ -1,0 +1,19 @@
+.profile-box {
+  max-width: 500px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 30px;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.profile-box button {
+  margin-top: 25px;
+  padding: 10px 20px;
+  background: #ff4d4d;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}

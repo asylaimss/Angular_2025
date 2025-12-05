@@ -1,0 +1,29 @@
+<div class="favorites-page">
+  <h1 class="favorites-title">Your Favorites</h1>
+
+  <ng-container *ngIf="favorites$ | async as favorites">
+    <div *ngIf="favorites.length === 0" class="favorites-empty">
+      No favorites yet 💔
+    </div>
+
+    <div *ngIf="favorites.length > 0" class="favorites-grid">
+      <div class="favorite-card" *ngFor="let item of favorites">
+        <img
+          class="favorite-image"
+          [src]="item.thumbnail"
+          [alt]="item.title"
+        />
+
+        <div class="favorite-info">
+          <h3 class="favorite-title">{{ item.title }}</h3>
+          <p class="favorite-brand">{{ item.brand }}</p>
+          <p class="favorite-price">${{ item.price }}</p>
+        </div>
+
+        <button class="favorite-remove" (click)="remove(item.id)">
+          ✖ Remove
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

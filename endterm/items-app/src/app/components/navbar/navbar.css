@@ -1,0 +1,66 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left a,
+.nav-right a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  color: #4a63e7;
+}
+
+.email {
+  margin-right: 12px;
+  color: #555;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  background: #4a63e7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #3a4ecd;
+}
+
+/* ❤️ Favorites */
+.favorites-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+}
+
+.favorites-link .count {
+  background: #ff8fb1;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
