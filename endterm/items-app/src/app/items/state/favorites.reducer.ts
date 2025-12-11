@@ -1,11 +1,11 @@
+// src/app/items/state/favorites.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import {
   addFavorite,
   removeFavorite,
   setFavorites,
-  clearFavorites
+  clearFavorites,
 } from './favorites.actions';
-
 import { Item } from '../../services/item.model';
 import { AuthService } from '../../services/auth.service';
 
@@ -13,64 +13,58 @@ export interface FavoritesState {
   favorites: Item[];
 }
 
-// Получаем ключ localStorage для текущего пользователя
+/**
+ * Ключ в localStorage зависит от текущего пользователя.
+ * Гость → 'favorites_guest'
+ * Пользователь → 'favorites_<uid>'
+ */
 function getStorageKey(): string {
   const uid = AuthService.instance?.currentUserId;
   return uid ? `favorites_${uid}` : 'favorites_guest';
 }
 
-// Загружаем избранные из localStorage текущего пользователя
 function loadFromLocalStorage(): Item[] {
   try {
     const raw = localStorage.getItem(getStorageKey());
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-
-    return Array.isArray(parsed)
-      ? parsed.filter(i => i && i.id !== null && i.id !== undefined)
-      : [];
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
   }
 }
 
 export const initialState: FavoritesState = {
-  favorites: loadFromLocalStorage()
+  favorites: loadFromLocalStorage(),
 };
 
 export const favoritesReducer = createReducer(
   initialState,
 
-  // Добавление в избранные
+  // ➕ Add
   on(addFavorite, (state, { item }) => {
     const updated = state.favorites.some(f => f.id === item.id)
       ? state.favorites
       : [...state.favorites, item];
 
     localStorage.setItem(getStorageKey(), JSON.stringify(updated));
-
     return { favorites: updated };
   }),
 
-  // Удаление из избранных
+  // ➖ Remove
   on(removeFavorite, (state, { id }) => {
-    const updated = state.favorites.filter(i => i.id !== id);
-
+    const updated = state.favorites.filter(f => f.id !== id);
     localStorage.setItem(getStorageKey(), JSON.stringify(updated));
-
     return { favorites: updated };
   }),
 
-  // Устанавливаем избранные из AuthService при логине
+  // 🔁 Установить favorites (после логина / загрузки из Firestore)
   on(setFavorites, (state, { items }) => {
-    const updated = items.filter(i => i && i.id !== null && i.id !== undefined);
-
-    localStorage.setItem(getStorageKey(), JSON.stringify(updated));
-
-    return { favorites: updated };
+    localStorage.setItem(getStorageKey(), JSON.stringify(items));
+    return { favorites: items };
   }),
 
-  // Очищаем избранные при logout
+  // 🚪 Logout
   on(clearFavorites, () => {
     localStorage.removeItem(getStorageKey());
     return { favorites: [] };

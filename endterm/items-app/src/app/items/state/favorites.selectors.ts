@@ -1,3 +1,4 @@
+// src/app/items/state/favorites.selectors.ts
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { FavoritesState } from './favorites.reducer';
 
@@ -6,10 +7,10 @@ export const selectFavoritesState =
 
 export const selectFavorites = createSelector(
   selectFavoritesState,
-  (state) => state.favorites
+  state => state.favorites
 );
 
 export const selectFavoritesCount = createSelector(
   selectFavorites,
-  (items) => items.length
+  favorites => favorites.length
 );

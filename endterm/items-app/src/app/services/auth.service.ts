@@ -1,3 +1,5 @@
+// src/app/services/auth.service.ts
+
 import { Injectable } from '@angular/core';
 import {
   Auth,
@@ -10,13 +12,13 @@ import {
 
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { setFavorites, clearFavorites } from '../items/state/favorites.actions';
+
+import { UserProfileService } from '@services/user-profile.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   static instance: AuthService;
 
   user$: Observable<User | null>;
@@ -24,49 +26,44 @@ export class AuthService {
 
   constructor(
     private afAuth: Auth,
+    private userProfile: UserProfileService,
     private store: Store
   ) {
     this.user$ = authState(this.afAuth);
     this.currentUser$ = this.user$;
-
     AuthService.instance = this;
-
-    // 🔥 главный механизм восстановления избранных
-    this.user$.subscribe(user => {
-      if (user) {
-        const key = `favorites_${user.uid}`;
-        const raw = localStorage.getItem(key);
-        try {
-          const favs = raw ? JSON.parse(raw) : [];
-          this.store.dispatch(setFavorites({ items: favs }));
-        } catch {
-          this.store.dispatch(setFavorites({ items: [] }));
-        }
-      } else {
-        // logout
-        this.store.dispatch(clearFavorites());
-      }
-    });
   }
 
   get currentUserId(): string | null {
     return this.afAuth.currentUser ? this.afAuth.currentUser.uid : null;
   }
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.afAuth, email, password);
+  // LOGIN
+  async login(email: string, password: string) {
+    const cred = await signInWithEmailAndPassword(this.afAuth, email, password);
+
+    // событие для Effects
+    this.store.dispatch({ type: '[Auth] Login Success' });
+
+    return cred;
   }
 
-  signup(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.afAuth, email, password);
+  // SIGNUP + создание профиля в Firestore
+  async signup(email: string, password: string) {
+    const cred = await createUserWithEmailAndPassword(this.afAuth, email, password);
+
+    await this.userProfile.ensureUserProfile(cred.user);
+
+    // после регистрации считаем, что юзер залогинен
+    this.store.dispatch({ type: '[Auth] Login Success' });
+
+    return cred;
   }
 
+  // LOGOUT
   async logout() {
-    const uid = this.currentUserId;
-    if (uid) {
-      // not removing user data so it loads again later
-      console.log('User logged out—favorites remain saved for next login');
-    }
-    return signOut(this.afAuth);
+    await signOut(this.afAuth);
+
+    this.store.dispatch({ type: '[Auth] Logout Success' });
   }
 }

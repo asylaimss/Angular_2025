@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@services/auth.service';
 import { NgIf, AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
 import { Store } from '@ngrx/store';
-import { AuthService } from '@services/auth.service';
 import { selectFavoritesCount } from '../../items/state/favorites.selectors';
-import { clearFavorites } from '../../items/state/favorites.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -23,8 +21,7 @@ export class NavbarComponent {
     private store: Store
   ) {}
 
-  async logout() {
-    await this.auth.logout();
-    this.store.dispatch(clearFavorites()); // UI очищается
+  logout() {
+    this.auth.logout();
   }
 }

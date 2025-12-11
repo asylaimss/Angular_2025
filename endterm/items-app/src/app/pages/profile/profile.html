@@ -1,8 +1,72 @@
-<div class="profile-box">
-  <h2>Your Profile</h2>
+<div class="profile-wrapper" *ngIf="!loading; else loadingTpl">
 
-  <p>Logged in as:</p>
-  <strong>{{ (user$ | async)?.email }}</strong>
+  <div *ngIf="profile; else noProfileTpl" class="profile-card">
 
-  <button (click)="logout()">Logout</button>
+    <h2>Profile</h2>
+
+    <!-- Аватар -->
+    <div class="avatar-block">
+      <img class="avatar-main" [src]="selectedAvatar" alt="User avatar" />
+
+      <!-- Upload file avatar -->
+      <label class="upload-btn">
+        Upload photo
+        <input type="file" accept="image/*" hidden (change)="onAvatarSelected($event)" />
+      </label>
+    </div>
+
+    <!-- Email -->
+    <p class="email">{{ profile.email }}</p>
+    <p class="uid">UID: {{ profile.uid }}</p>
+
+    <!-- Display Name -->
+    <label class="field-label">Display name</label>
+    <input
+      type="text"
+      [(ngModel)]="editableName"
+      class="field-input"
+      placeholder="Your name"
+    />
+
+    <!-- Avatar selection (preset) -->
+    <label class="field-label">Choose preset avatar</label>
+    <div class="avatar-list">
+      <img
+        *ngFor="let av of avatars"
+        [src]="av"
+        class="avatar-option"
+        [class.selected]="av === selectedAvatar"
+        (click)="selectedAvatar = av"
+      />
+    </div>
+
+    <!-- Messages -->
+    <div class="messages">
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <p class="success" *ngIf="success">{{ success }}</p>
+    </div>
+
+    <!-- Save Button -->
+    <button class="save-btn" (click)="saveProfile()" [disabled]="saving">
+      {{ saving ? 'Saving...' : 'Save profile' }}
+    </button>
+
+    <a routerLink="/items" class="back-link">← Back to items</a>
+
+  </div>
+
 </div>
+
+<!-- Loading -->
+<ng-template #loadingTpl>
+  <div class="profile-wrapper">
+    <p>Loading profile...</p>
+  </div>
+</ng-template>
+
+<!-- No Profile -->
+<ng-template #noProfileTpl>
+  <div class="profile-wrapper">
+    <p>Профиль не найден.</p>
+  </div>
+</ng-template>

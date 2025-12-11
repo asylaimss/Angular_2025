@@ -1,19 +1,97 @@
-.profile-box {
-  max-width: 500px;
-  margin: 80px auto;
-  text-align: center;
-  padding: 30px;
-  background: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
-.profile-box button {
-  margin-top: 25px;
-  padding: 10px 20px;
-  background: #ff4d4d;
+.profile-card {
+  width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.avatar-main {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.avatar-block {
+  text-align: center;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #4a6cff;
   color: white;
   border-radius: 8px;
-  border: none;
   cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.field-label {
+  margin-top: 15px;
+  display: block;
+  font-weight: 600;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+.avatar-list {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.avatar-option {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  opacity: 0.8;
+  border: 2px solid transparent;
+}
+
+.avatar-option.selected {
+  opacity: 1;
+  border-color: #4a6cff;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4a6cff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.error {
+  color: #e53935;
+}
+
+.success {
+  color: #4caf50;
+}
+
+.back-link {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #4a6cff;
+  text-decoration: none;
 }

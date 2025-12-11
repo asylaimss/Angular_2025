@@ -7,10 +7,11 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { itemsReducer } from './items/state/items.reducer';
 import { favoritesReducer } from './items/state/favorites.reducer';
-import { favoritesMetaReducer } from './items/state/favorites.metareducer';
 
 import { provideEffects } from '@ngrx/effects';
 import { ItemsEffects } from './items/state/items.effects';
+import { FavoritesEffects } from './items/state/favorites.effects';  // ⬅️ Добавили
+
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 // FIREBASE
@@ -39,17 +40,17 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
 
     // NGRX STORE CONFIG
-    provideStore(
-      {
-        items: itemsReducer,          // ItemsState { items: Item[] }
-        favorites: favoritesReducer   // FavoritesState { favorites: Item[] }
-      },
-      {
-        metaReducers: [favoritesMetaReducer]
-      }
-    ),
+    provideStore({
+      items: itemsReducer,
+      favorites: favoritesReducer
+    }),
 
-    provideEffects([ItemsEffects]),
+    // Effects
+    provideEffects([
+      ItemsEffects,
+      FavoritesEffects  // ⬅️ Подключили favorites effects
+    ]),
+
     provideStoreDevtools(),
   ]
 };
