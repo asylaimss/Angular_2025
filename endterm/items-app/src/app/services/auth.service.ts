@@ -63,7 +63,7 @@ export class AuthService {
   // LOGOUT
   async logout() {
     await signOut(this.afAuth);
-
-    this.store.dispatch({ type: '[Auth] Logout Success' });
+    return true;
+    //this.store.dispatch({ type: '[Auth] Logout Success' });
   }
 }

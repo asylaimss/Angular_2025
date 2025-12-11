@@ -1,54 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, AsyncPipe, NgFor } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
-import { selectItems } from '../../items/state/items.selectors';
-import { selectFavorites } from '../../items/state/favorites.selectors';
+import { Item } from '../../services/item.model';
 import { addFavorite, removeFavorite } from '../../items/state/favorites.actions';
+import { selectFavorites } from '../../items/state/favorites.selectors';
+import { selectItems } from '../../items/state/items.selectors';
 
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
   standalone: true,
   templateUrl: './item-details.html',
   styleUrls: ['./item-details.css'],
-  imports: [
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    RouterLink      // ← обязательно, если есть routerLink
-  ]
+  imports: [CommonModule, RouterModule, AsyncPipe],
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent {
+  item$: Observable<Item | undefined>;
+  favorites$ = this.store.select(selectFavorites);
 
-  id!: number;
+  /** ТЕКУЩИЙ ТОВАР ДЛЯ TS */
+  item: Item | null = null;
 
-  item$ = this.store.select(selectItems).pipe(
-    map(items => items.find(i => i.id === this.id))
-  );
-
-  isFavorite$ = this.store.select(selectFavorites).pipe(
-    map(favs => favs.some(f => f.id === this.id))
-  );
+  /** ФЛАГ — в избранных ли текущий товар */
+  isFavorite = false;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store
-  ) {}
+  ) {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-  ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.item$ = this.store.select(selectItems).pipe(
+      map(items => items.find(i => i.id === id))
+    );
+
+    // Подписка чтобы сохранить item локально
+    this.item$.subscribe(it => {
+      this.item = it ?? null;
+    });
+
+    // Подписка чтобы отслеживать избранное
+    this.favorites$.subscribe(favs => {
+      this.isFavorite = favs.some(f => f.id === id);
+    });
   }
 
-  toggleFavorite(item: any) {
-    this.isFavorite$.subscribe(isFav => {
-      if (isFav) {
-        this.store.dispatch(removeFavorite({ id: item.id }));
-      } else {
-        this.store.dispatch(addFavorite({ item }));
-      }
-    });
+  toggleFavorite() {
+    if (!this.item) return;
+
+    if (this.isFavorite) {
+      this.store.dispatch(removeFavorite({ id: this.item.id }));
+    } else {
+      this.store.dispatch(addFavorite({ item: this.item }));
+    }
   }
 }

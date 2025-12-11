@@ -1,48 +1,36 @@
-<div *ngIf="item$ | async as item" class="details-page">
+<a routerLink="/items" class="back-link">← Back to list</a>
 
-  <!-- BACK BUTTON -->
-  <a routerLink="/items" class="back-link">← Back to list</a>
+<div *ngIf="item as item" class="details-container">
 
-  <div class="details-container">
-
-    <!-- LEFT: MAIN IMAGE -->
-    <div class="image-section">
-      <img class="main-image" [src]="item.thumbnail" [alt]="item.title" />
-
-      <!-- EXTRA IMAGES -->
-      <div class="image-gallery" *ngIf="item.images?.length > 1">
-        <img
-          *ngFor="let img of item.images"
-          [src]="img"
-          class="gallery-image"
-          alt="extra image"
-        />
-      </div>
-    </div>
-
-    <!-- RIGHT: INFORMATION -->
-    <div class="info-section">
-
-      <h1 class="title">{{ item.title }}</h1>
-
-      <p class="brand">{{ item.brand }}</p>
-
-      <p class="description">{{ item.description }}</p>
-
-      <!-- 7 REQUIRED FIELDS -->
-      <ul class="extra-info">
-        <li><strong>Category:</strong> {{ item.category }}</li>
-        <li><strong>Rating:</strong> {{ item.rating }}</li>
-        <li><strong>Product ID:</strong> {{ item.id }}</li>
-        <li><strong>Price:</strong> ${{ item.price }}</li>
-      </ul>
-
-      <!-- FAVORITES BUTTON -->
-      <button class="fav-btn" (click)="toggleFavorite(item)">
-        <span *ngIf="isFavorite$ | async">❤️ Remove from Favorites</span>
-        <span *ngIf="!(isFavorite$ | async)">🤍 Add to Favorites</span>
-      </button>
-
-    </div>
+  <!-- ЛЕВАЯ ЧАСТЬ - ФОТО -->
+  <div class="image-block">
+    <img [src]="item.thumbnail" [alt]="item.title" class="item-image" />
   </div>
+
+  <!-- ПРАВАЯ ЧАСТЬ - ИНФО -->
+  <div class="info-block">
+    <h1>{{ item.title }}</h1>
+    <h3>{{ item.brand }}</h3>
+
+    <p class="description">{{ item.description }}</p>
+
+    <ul class="details-list">
+      <li><strong>Category:</strong> {{ item.category }}</li>
+      <li><strong>Rating:</strong> {{ item.rating }}</li>
+      <li><strong>Product ID:</strong> {{ item.id }}</li>
+      <li><strong>Price:</strong> ${{ item.price }}</li>
+    </ul>
+
+    <button class="favorite-btn"
+            [class.active]="isFavorite"
+            (click)="toggleFavorite()">
+      <span *ngIf="isFavorite">❤️ Remove from Favorites</span>
+      <span *ngIf="!isFavorite">🤍 Add to Favorites</span>
+    </button>
+  </div>
+
 </div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

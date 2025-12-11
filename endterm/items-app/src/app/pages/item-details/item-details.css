@@ -1,60 +1,76 @@
-.details-page {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.back-link {
-  font-size: 16px;
-  margin-bottom: 20px;
-  display: inline-block;
-  color: #4a4af5;
-  text-decoration: none;
-}
-
 .details-container {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 40px;
-}
-
-.main-image {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.image-gallery {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.gallery-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 6px;
-  object-fit: cover;
+.image-block {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.title {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.extra-info li {
-  margin: 4px 0;
-}
-
-.fav-btn {
-  margin-top: 20px;
-  padding: 12px 18px;
+.item-image {
+  width: 350px;
+  height: auto;
   border-radius: 12px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: white;
-  transition: 0.2s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.fav-btn:hover {
-  background: #f6f6f6;
+.info-block {
+  flex: 1;
+}
+
+.description {
+  color: #444;
+  margin: 12px 0 20px 0;
+  font-size: 15px;
+}
+
+.details-list {
+  margin-bottom: 20px;
+}
+
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: 1px solid #dddddd;
+
+  background: #ffffff;
+  color: #333;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Hover эффект */
+.favorite-btn:hover {
+  background: #f7f7f7;
+  border-color: #c8c8c8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Активная (когда уже в избранном) */
+.favorite-btn.active {
+  background: #ffe5e5;
+  border-color: #ff9a9a;
+  color: #d60000;
+  box-shadow: 0 4px 10px rgba(255,0,0,0.1);
+}
+
+/* Hover активной */
+.favorite-btn.active:hover {
+  background: #ffd7d7;
+  transform: translateY(-2px);
 }
