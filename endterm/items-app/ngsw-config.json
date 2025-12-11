@@ -41,13 +41,25 @@
       "name": "products-api",
       "urls": [
         "https://dummyjson.com/products",
-        "https://dummyjson.com/products/*"
+        "https://dummyjson.com/products/**"
       ],
       "cacheConfig": {
-        "strategy": "freshness",      
-        "maxSize": 50,                 
-        "maxAge": "1d",                
-        "timeout": "5s"                
+        "strategy": "freshness",
+        "maxSize": 50,
+        "maxAge": "1d",
+        "timeout": "5s"
+      }
+    },
+    {
+      "name": "firebase-firestore",
+      "urls": [
+        "https://firestore.googleapis.com/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "1h",
+        "timeout": "10s"
       }
     }
   ]

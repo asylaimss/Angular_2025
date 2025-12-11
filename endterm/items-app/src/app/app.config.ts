@@ -10,7 +10,7 @@ import { favoritesReducer } from './items/state/favorites.reducer';
 
 import { provideEffects } from '@ngrx/effects';
 import { ItemsEffects } from './items/state/items.effects';
-import { FavoritesEffects } from './items/state/favorites.effects';  // ⬅️ Добавили
+import { FavoritesEffects } from './items/state/favorites.effects';
 
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
@@ -20,12 +20,15 @@ import { initializeApp } from 'firebase/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
+// PWA
+import { provideServiceWorker } from '@angular/service-worker';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
 
-    // Firebase
+    // Firebase init
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: " ",
@@ -39,18 +42,23 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
 
-    // NGRX STORE CONFIG
+    // NGRX STORE
     provideStore({
       items: itemsReducer,
-      favorites: favoritesReducer
+      favorites: favoritesReducer,
     }),
 
-    // Effects
     provideEffects([
       ItemsEffects,
-      FavoritesEffects  // ⬅️ Подключили favorites effects
+      FavoritesEffects
     ]),
 
     provideStoreDevtools(),
+
+    // ⭐ REQUIRED FOR PWA
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: true,
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ]
 };
