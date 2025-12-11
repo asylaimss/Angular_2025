@@ -1,67 +1,72 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Auth,
-  User,
-  user,
-  createUserWithEmailAndPassword,
+  authState,
   signInWithEmailAndPassword,
-  signOut
+  createUserWithEmailAndPassword,
+  signOut,
+  User,
 } from '@angular/fire/auth';
-import { Observable, Subject } from 'rxjs';
-import { FavoritesSyncService } from '../items/state/favorites-sync.service';
+
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { clearFavorites } from '../items/state/favorites.actions';
+import { setFavorites, clearFavorites } from '../items/state/favorites.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
-  private auth = inject(Auth);
-  private store = inject(Store);
-  private favoritesSync = inject(FavoritesSyncService);
+  static instance: AuthService;
 
-  currentUser$: Observable<User | null> = user(this.auth);
+  user$: Observable<User | null>;
+  currentUser$: Observable<User | null>;
 
-  userLoggedIn$ = new Subject<User>();
-  userLoggedOut$ = new Subject<void>();
+  constructor(
+    private afAuth: Auth,
+    private store: Store
+  ) {
+    this.user$ = authState(this.afAuth);
+    this.currentUser$ = this.user$;
 
-  constructor() {}
+    AuthService.instance = this;
 
-  async signup(email: string, password: string) {
-    const result = await createUserWithEmailAndPassword(this.auth, email, password);
-
-    if (result.user) {
-      await this.favoritesSync.mergeLocalAndServer(result.user.uid);
-      this.userLoggedIn$.next(result.user);
-    }
-
-    return result;
+    // 🔥 главный механизм восстановления избранных
+    this.user$.subscribe(user => {
+      if (user) {
+        const key = `favorites_${user.uid}`;
+        const raw = localStorage.getItem(key);
+        try {
+          const favs = raw ? JSON.parse(raw) : [];
+          this.store.dispatch(setFavorites({ items: favs }));
+        } catch {
+          this.store.dispatch(setFavorites({ items: [] }));
+        }
+      } else {
+        // logout
+        this.store.dispatch(clearFavorites());
+      }
+    });
   }
 
-  async login(email: string, password: string) {
-    const result = await signInWithEmailAndPassword(this.auth, email, password);
+  get currentUserId(): string | null {
+    return this.afAuth.currentUser ? this.afAuth.currentUser.uid : null;
+  }
 
-    if (result.user) {
-      await this.favoritesSync.loadFromFirestore(result.user.uid);
-      this.userLoggedIn$.next(result.user);
-    }
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.afAuth, email, password);
+  }
 
-    return result;
+  signup(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.afAuth, email, password);
   }
 
   async logout() {
-    const current = this.auth.currentUser;
-
-    if (current) {
-      await this.favoritesSync.saveToFirestore(current.uid);
+    const uid = this.currentUserId;
+    if (uid) {
+      // not removing user data so it loads again later
+      console.log('User logged out—favorites remain saved for next login');
     }
-
-    await signOut(this.auth);
-
-    localStorage.removeItem('favorites');
-    this.store.dispatch(clearFavorites());
-
-    this.userLoggedOut$.next();
+    return signOut(this.afAuth);
   }
 }

@@ -1,24 +1,26 @@
 <nav class="navbar">
+
   <div class="nav-left">
     <a routerLink="/">ItemsApp</a>
     <a routerLink="/items">Items</a>
 
-    <!-- Favorites link с количеством -->
     <a routerLink="/favorites" class="favorites-link">
       ❤️ <span class="count">{{ favoritesCount$ | async }}</span>
     </a>
   </div>
 
-  <!-- если пользователь авторизован -->
+  <!-- Авторизованный пользователь -->
   <div class="nav-right" *ngIf="auth.currentUser$ | async as user">
     <span class="email">{{ user.email }}</span>
     <a routerLink="/profile">Profile</a>
-    <button class="logout-btn" (click)="auth.logout()">Logout</button>
+
+    <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 
-  <!-- если НЕ авторизован -->
+  <!-- Не авторизован -->
   <div class="nav-right" *ngIf="!(auth.currentUser$ | async)">
     <a routerLink="/login">Login</a>
     <a routerLink="/signup">Signup</a>
   </div>
+
 </nav>

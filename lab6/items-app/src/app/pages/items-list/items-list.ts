@@ -26,7 +26,7 @@ export class ItemsList {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe((params) => {
-      this.query = params.get('q') ?? '';
+      this.query = params.get('q') ?? ''; 
       this.fetchItems();
     });
   }

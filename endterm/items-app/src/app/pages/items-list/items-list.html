@@ -1,39 +1,20 @@
-<div class="filters-row">
-  <input
-    type="text"
-    placeholder="Search products..."
-    [(ngModel)]="search"
-    (ngModelChange)="load()"
-  />
-
-  <select [(ngModel)]="selectedBrand" (change)="applyFilters()">
-    <option value="">All Brands</option>
-    <option *ngFor="let b of brands" [value]="b">{{ b }}</option>
-  </select>
-
-  <select [(ngModel)]="sort" (change)="applyFilters()">
-    <option value="">Sort</option>
-    <option value="price_asc">Price ↑</option>
-    <option value="price_desc">Price ↓</option>
-    <option value="rating_desc">Rating ↓</option>
-  </select>
-</div>
-
 <div class="items-grid">
-  <a
-    class="item-card"
-    *ngFor="let item of paginated"
-    [routerLink]="['/items', item.id]"
-  >
-    <img [src]="item.thumbnail" [alt]="item.title" />
+
+  <div class="item-card" *ngFor="let item of items">
+
+    <a [routerLink]="['/items', item.id]">
+      <img [src]="item.thumbnail" [alt]="item.title" />
+    </a>
+
     <h3>{{ item.title }}</h3>
     <p class="brand">{{ item.brand }}</p>
     <p class="price">${{ item.price }}</p>
-  </a>
-</div>
 
-<div class="pagination" *ngIf="filtered.length > pageSize">
-  <button (click)="prevPage()" [disabled]="page <= 1">Prev</button>
-  <span>Page {{ page }} / {{ totalPages }}</span>
-  <button (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+    <button class="fav-btn" (click)="toggleFavorite(item)">
+      <span *ngIf="isFavorite(item.id)">❤️</span>
+      <span *ngIf="!isFavorite(item.id)">🤍</span>
+    </button>
+
+  </div>
+
 </div>

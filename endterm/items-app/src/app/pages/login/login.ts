@@ -1,48 +1,52 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { RouterLink } from '@angular/router';       // ⬅️ добавили
+
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  imports: [FormsModule, NgIf, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    RouterLink,                                    // ⬅️ добавили сюда
+  ],
 })
 export class LoginComponent {
+  submitted = false;
+  firebaseError: string | null = null;
 
-  email = '';
-  password = '';
-  error: string | null = null;
-  loading = false;
+  constructor(private fb: FormBuilder, private auth: AuthService) {}
 
-  constructor(
-    public auth: AuthService,
-    private router: Router
-  ) {}
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
-  async onSubmit() {
-    this.error = null;
+  get email() {
+    return this.loginForm.get('email')!;
+  }
+  get password() {
+    return this.loginForm.get('password')!;
+  }
 
-    if (!this.email || !this.password) {
-      this.error = 'Please enter email and password.';
+  onSubmit() {
+    this.submitted = true;
+    this.firebaseError = null;
+
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
 
-    try {
-      this.loading = true;
+    const { email, password } = this.loginForm.value;
 
-      await this.auth.login(this.email, this.password);
-
-      // ⬇️ ПЕРЕХОД НА ПРОФИЛЬ
-      this.router.navigate(['/profile']);
-
-    } catch (e: any) {
-      this.error = e?.message || 'Login failed';
-    } finally {
-      this.loading = false;
-    }
+    this.auth.login(email!, password!).catch(() => {
+      this.firebaseError = 'Неверный email или пароль';
+    });
   }
 }

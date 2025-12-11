@@ -1,19 +1,37 @@
-<h1>Login</h1>
+<div class="auth-card">
 
-<form (ngSubmit)="onSubmit()">
+  <h2>Login</h2>
 
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="email" name="email" required />
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password" name="password" required />
+    <label>Email</label>
+    <input type="email" formControlName="email" />
 
-  <div class="error" *ngIf="error">{{ error }}</div>
+    <div class="error"
+        *ngIf="email.invalid && (email.touched || email.dirty || submitted)">
+      <small *ngIf="email.errors?.['required']">Email обязателен</small>
+      <small *ngIf="email.errors?.['email']">Введите корректный email</small>
+    </div>
 
-  <button type="submit" [disabled]="loading">
-    {{ loading ? 'Logging in...' : 'Login' }}
-  </button>
+    <label>Пароль</label>
+    <input type="password" formControlName="password" />
 
-</form>
+    <div class="error"
+        *ngIf="password.invalid && (password.touched || password.dirty || submitted)">
+      <small *ngIf="password.errors?.['required']">Пароль обязателен</small>
+      <small *ngIf="password.errors?.['minlength']">Минимум 8 символов</small>
+    </div>
 
-<p>No account? <a routerLink="/signup">Create one</a></p>
+    <div class="error firebase-error" *ngIf="firebaseError">
+      {{ firebaseError }}
+    </div>
+
+    <button type="submit" class="auth-btn">Войти</button>
+  </form>
+
+</div>
+
+<p class="bottom-text">
+  Нет аккаунта?
+  <a routerLink="/signup">Создать новый</a>
+</p>

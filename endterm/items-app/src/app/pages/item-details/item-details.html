@@ -1,28 +1,25 @@
-<div class="details-container" *ngIf="item$ | async as item">
-  <div class="details-image-block">
-    <img [src]="item.thumbnail" [alt]="item.title" class="details-main-image" />
+<div *ngIf="item$ | async as item" class="details-layout">
 
-    <div class="details-thumbs">
-      <img
-        *ngFor="let img of item.images"
-        [src]="img"
-        [alt]="item.title"
-        class="details-thumb"
-      />
-    </div>
+  <div class="details-image">
+    <img [src]="item.thumbnail" [alt]="item.title" />
   </div>
 
-  <div class="details-info-block">
-    <h1 class="details-title">{{ item.title }}</h1>
-    <p class="details-brand">{{ item.brand }}</p>
-    <p class="details-description">{{ item.description }}</p>
+  <div class="details-info">
+    <h1>{{ item.title }}</h1>
 
-    <div class="details-price-row">
-      <span class="details-price">${{ item.price }}</span>
-    </div>
+    <p class="brand">{{ item.brand }}</p>
 
-    <button class="fav-button" (click)="addToFavorites(item)">
-      ❤️ Add to Favorites
+    <p class="description">
+      {{ item.description }}
+    </p>
+
+    <p class="price">${{ item.price }}</p>
+
+    <button class="fav-btn" (click)="toggleFavorite(item)">
+      {{ isFavorite(item.id) ? '❤️ Remove from Favorites' : '🤍 Add to Favorites' }}
     </button>
+
+    <a routerLink="/items" class="back-link">← Back to list</a>
   </div>
+
 </div>

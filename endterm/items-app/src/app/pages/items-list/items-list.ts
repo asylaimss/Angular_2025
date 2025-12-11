@@ -8,6 +8,10 @@ import { RouterLink } from '@angular/router';
 import { selectItems } from '../../items/state/items.selectors';
 import { loadItems } from '../../items/state/items.actions';
 
+import { addFavorite, removeFavorite } from '../../items/state/favorites.actions';
+import { selectFavorites } from '../../items/state/favorites.selectors';
+import { Item } from '../../services/item.model';
+
 @Component({
   selector: 'app-items-list',
   standalone: true,
@@ -15,10 +19,10 @@ import { loadItems } from '../../items/state/items.actions';
   styleUrls: ['./items-list.css'],
   imports: [NgFor, NgIf, FormsModule, RouterLink],
 })
-export class ItemsList implements OnInit {
-  items: any[] = [];
-  filtered: any[] = [];
-  paginated: any[] = [];
+export class ItemsListComponent implements OnInit {
+
+  items: Item[] = [];
+  favoriteIds: number[] = [];
 
   search = '';
   selectedBrand = '';
@@ -26,63 +30,33 @@ export class ItemsList implements OnInit {
 
   brands: string[] = [];
 
-  page = 1;
-  pageSize = 6;
-  totalPages = 1;
-
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.load(); // первая загрузка без фильтра
+    // Загружаем товары
+    this.store.dispatch(loadItems({ query: '' }));
 
+    // Следим за товарами
     this.store.select(selectItems).subscribe((items) => {
       this.items = items;
       this.brands = [...new Set(items.map((i) => i.brand))];
-      this.applyFilters();
+    });
+
+    // Следим за избранными
+    this.store.select(selectFavorites).subscribe(favs => {
+      this.favoriteIds = favs.map(f => f.id);
     });
   }
 
-  // загрузка с бэка (поиск по q)
-  load() {
-    this.store.dispatch(loadItems({ query: this.search }));
+  isFavorite(id: number | undefined): boolean {
+    return id !== undefined && this.favoriteIds.includes(id);
   }
 
-  // применяем фильтры на клиенте
-  applyFilters() {
-    let r = [...this.items];
-
-    if (this.selectedBrand) {
-      r = r.filter((i) => i.brand === this.selectedBrand);
-    }
-
-    if (this.sort === 'price_asc') r = r.sort((a, b) => a.price - b.price);
-    if (this.sort === 'price_desc') r = r.sort((a, b) => b.price - a.price);
-    if (this.sort === 'rating_desc') r = r.sort((a, b) => b.rating - a.rating);
-
-    this.filtered = r;
-    this.page = 1;
-    this.updatePagination();
-  }
-
-  updatePagination() {
-    this.totalPages = Math.ceil(this.filtered.length / this.pageSize) || 1;
-    this.paginated = this.filtered.slice(
-      (this.page - 1) * this.pageSize,
-      this.page * this.pageSize
-    );
-  }
-
-  nextPage() {
-    if (this.page < this.totalPages) {
-      this.page++;
-      this.updatePagination();
-    }
-  }
-
-  prevPage() {
-    if (this.page > 1) {
-      this.page--;
-      this.updatePagination();
+  toggleFavorite(item: Item) {
+    if (this.isFavorite(item.id)) {
+      this.store.dispatch(removeFavorite({ id: item.id }));
+    } else {
+      this.store.dispatch(addFavorite({ item }));
     }
   }
 }

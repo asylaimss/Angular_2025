@@ -1,37 +1,59 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { combineLatest, map, Observable } from 'rxjs';
 
-import { ItemsService } from '../../services/items';
 import { Item } from '../../services/item.model';
-import { addFavorite } from '../../items/state/favorites.actions';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { selectItems } from '../../items/state/items.selectors';
+import { addFavorite, removeFavorite } from '../../items/state/favorites.actions';
+import { selectFavorites } from '../../items/state/favorites.selectors';
 
 @Component({
   selector: 'app-item-details',
   standalone: true,
   templateUrl: './item-details.html',
   styleUrls: ['./item-details.css'],
-  imports: [AsyncPipe, NgIf]
+  imports: [NgIf, AsyncPipe, RouterLink],
 })
 export class ItemDetailsComponent {
 
-  item$!: Observable<Item>;
+  item$!: Observable<Item | undefined>;
+  favoriteIds: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private itemsService: ItemsService,
     private store: Store
   ) {
-    this.item$ = this.route.paramMap.pipe(
-      map(params => Number(params.get('id'))),
-      switchMap(id => this.itemsService.getItem(id))
+    // Загружаем текущий item
+    this.item$ = combineLatest([
+      this.store.select(selectItems),
+      this.route.paramMap,
+    ]).pipe(
+      map(([items, params]) => {
+        const id = Number(params.get('id'));
+        return items.find(i => i.id === id);
+      })
     );
+
+    // Следим за избранными
+    this.store.select(selectFavorites).subscribe(favs => {
+      this.favoriteIds = favs.map(f => f.id);
+    });
   }
 
-  addToFavorites(item: Item) {
-    this.store.dispatch(addFavorite({ item }));
+  isFavorite(id: number | null | undefined): boolean {
+    if (id === null || id === undefined) return false;
+    return this.favoriteIds.includes(id);
+  }
+
+  toggleFavorite(item: Item) {
+    if (!item.id) return;
+
+    if (this.isFavorite(item.id)) {
+      this.store.dispatch(removeFavorite({ id: item.id }));
+    } else {
+      this.store.dispatch(addFavorite({ item }));
+    }
   }
 }

@@ -20,28 +20,50 @@ export class SignupComponent {
 
   constructor(public auth: AuthService, private router: Router) {}
 
+  // password must have: 8+ chars, 1 digit, 1 special char
+  isStrongPassword(pwd: string): boolean {
+    const pattern = /^(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    return pattern.test(pwd);
+  }
+
   async signup() {
     this.error = null;
+
+    // --- VALIDATION ---
 
     if (!this.email || !this.password || !this.repeatPassword) {
       this.error = 'Please fill all fields.';
       return;
     }
+
+    // email format validation
+    if (!/^\S+@\S+\.\S+$/.test(this.email)) {
+      this.error = 'Please enter a valid email.';
+      return;
+    }
+
     if (this.password !== this.repeatPassword) {
       this.error = 'Passwords do not match.';
       return;
     }
-    if (this.password.length < 6) {
-      this.error = 'Password must be at least 6 characters.';
+
+    if (!this.isStrongPassword(this.password)) {
+      this.error =
+        'Password must be at least 8 characters and include 1 digit and 1 special character.';
       return;
     }
 
+    // --- SEND REQUEST ---
     try {
       this.loading = true;
       await this.auth.signup(this.email, this.password);
-      await this.router.navigate(['/profile']);
+      this.router.navigate(['/profile']);
     } catch (e: any) {
-      this.error = e?.message || 'Signup failed';
+      if (e?.code === 'auth/email-already-in-use') {
+        this.error = 'This email is already registered.';
+      } else {
+        this.error = e?.message || 'Signup failed';
+      }
     } finally {
       this.loading = false;
     }

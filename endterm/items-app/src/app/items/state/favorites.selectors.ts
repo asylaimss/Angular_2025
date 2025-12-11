@@ -6,10 +6,10 @@ export const selectFavoritesState =
 
 export const selectFavorites = createSelector(
   selectFavoritesState,
-  (state: FavoritesState) => state.favorites
+  (state) => state.favorites
 );
 
 export const selectFavoritesCount = createSelector(
-  selectFavoritesState,
-  (state: FavoritesState) => state.favorites.length
+  selectFavorites,
+  (items) => items.length
 );

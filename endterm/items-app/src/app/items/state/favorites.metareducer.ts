@@ -1,19 +1,16 @@
 import { ActionReducer } from '@ngrx/store';
-import { FavoritesState } from './favorites.reducer';
 
-export function favoritesMetaReducer(
-  reducer: ActionReducer<FavoritesState>
-): ActionReducer<FavoritesState> {
+export function favoritesMetaReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return (state, action) => {
     const nextState = reducer(state, action);
 
     try {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify(nextState.favorites)
-      );
+      const favs = nextState?.favorites?.favorites;
+      if (Array.isArray(favs)) {
+        localStorage.setItem('favorites', JSON.stringify(favs));
+      }
     } catch {
-      // если вдруг localStorage упадёт — просто игнорируем
+      // ignore
     }
 
     return nextState;

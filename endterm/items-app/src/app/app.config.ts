@@ -4,11 +4,11 @@ import { routes } from './app.routes';
 
 import { provideHttpClient } from '@angular/common/http';
 
-// NGRX
 import { provideStore } from '@ngrx/store';
 import { itemsReducer } from './items/state/items.reducer';
 import { favoritesReducer } from './items/state/favorites.reducer';
 import { favoritesMetaReducer } from './items/state/favorites.metareducer';
+
 import { provideEffects } from '@ngrx/effects';
 import { ItemsEffects } from './items/state/items.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -24,34 +24,30 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
 
-    // Firebase init
+    // Firebase
     provideFirebaseApp(() =>
       initializeApp({
-        apiKey: "",
-        authDomain: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: "",
-        appId: ""
+        apiKey: " ",
+        authDomain: " ",
+        projectId: " ",
+        storageBucket: " ",
+        messagingSenderId: " ",
+        appId: " "
       })
     ),
-
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
 
-    // NGRX STORE
+    // NGRX STORE CONFIG
     provideStore(
-  {
-    items: itemsReducer,
-
-    // фикс типизации FavoritesState
-    favorites: (state, action) =>
-      favoritesReducer(state as any, action)
-  },
-  {
-    metaReducers: [favoritesMetaReducer]
-  }
-),
+      {
+        items: itemsReducer,          // ItemsState { items: Item[] }
+        favorites: favoritesReducer   // FavoritesState { favorites: Item[] }
+      },
+      {
+        metaReducers: [favoritesMetaReducer]
+      }
+    ),
 
     provideEffects([ItemsEffects]),
     provideStoreDevtools(),
