@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 
 @Component({
@@ -9,4 +9,18 @@ import { NavbarComponent } from './components/navbar/navbar';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class AppComponent {}
+export class AppComponent implements OnInit, OnDestroy {
+  constructor(private router: Router) {}
+
+  private offlineHandler = () => {
+    this.router.navigate(['/offline']);
+  };
+
+  ngOnInit() {
+    window.addEventListener('offline', this.offlineHandler);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('offline', this.offlineHandler);
+  }
+}
