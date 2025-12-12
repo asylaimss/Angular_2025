@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { AuthService } from '@services/auth.service';
 import { NgIf, AsyncPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
+
+import { AuthService } from '@services/auth.service';
 import { selectFavoritesCount } from '../../items/state/favorites.selectors';
+import { TranslationService, Lang } from '../../services/translation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,19 +15,22 @@ import { selectFavoritesCount } from '../../items/state/favorites.selectors';
   imports: [NgIf, AsyncPipe, RouterLink],
 })
 export class NavbarComponent {
-
   favoritesCount$ = this.store.select(selectFavoritesCount);
 
   constructor(
-  public auth: AuthService,
-  private store: Store,
-  private router: Router   // ← ДОБАВИТЬ ЭТО!
-) {}
+    public auth: AuthService,
+    private store: Store,
+    private router: Router,
+    public i18n: TranslationService   // 🔥 ОБЯЗАТЕЛЬНО
+  ) {}
 
-  logout() {
-  this.auth.logout().then(() => {
+  changeLang(lang: Lang) {
+    this.i18n.setLang(lang);
+  }
+
+  async logout() {
+    await this.auth.logout();
     this.store.dispatch({ type: '[Auth] Logout Success' });
-    this.router.navigate(['/login']);   // ← ПЕРЕХОД после logout
-  });
-}
+    this.router.navigate(['/login']);
+  }
 }

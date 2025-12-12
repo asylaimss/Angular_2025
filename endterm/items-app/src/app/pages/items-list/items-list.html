@@ -1,14 +1,17 @@
-<div class="filters-row">
+<!-- FILTERS -->
+<div class="filters-bar">
   <input
     type="text"
-    placeholder="Search..."
+    placeholder="Search products..."
     [(ngModel)]="search"
     (ngModelChange)="onSearchChange()"
   />
 
   <select [(ngModel)]="selectedBrand" (change)="applyFilters()">
     <option value="">All Brands</option>
-    <option *ngFor="let b of brands" [value]="b">{{ b }}</option>
+    <option *ngFor="let b of brands" [value]="b">
+      {{ b }}
+    </option>
   </select>
 
   <select [(ngModel)]="sort" (change)="applyFilters()">
@@ -19,7 +22,7 @@
   </select>
 </div>
 
-<!-- GRID -->
+<!-- ITEMS GRID -->
 <div class="items-grid">
   <a
     class="item-card"
@@ -27,15 +30,24 @@
     [routerLink]="['/items', item.id]"
   >
     <img [src]="item.thumbnail" [alt]="item.title" />
-    <h3>{{ item.title }}</h3>
-    <p class="brand">{{ item.brand }}</p>
-    <p class="price">${{ item.price }}</p>
+
+    <div class="item-info">
+      <h3>{{ item.title }}</h3>
+      <p class="brand">{{ item.brand }}</p>
+      <p class="price">${{ item.price }}</p>
+    </div>
   </a>
 </div>
 
 <!-- PAGINATION -->
 <div class="pagination" *ngIf="totalPages > 1">
-  <button (click)="prevPage()" [disabled]="page <= 1">Prev</button>
+  <button (click)="prevPage()" [disabled]="page <= 1">
+    ← Prev
+  </button>
+
   <span>Page {{ page }} / {{ totalPages }}</span>
-  <button (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+
+  <button (click)="nextPage()" [disabled]="page >= totalPages">
+    Next →
+  </button>
 </div>

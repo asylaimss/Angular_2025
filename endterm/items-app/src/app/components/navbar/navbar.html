@@ -1,26 +1,71 @@
 <nav class="navbar">
-
+  <!-- LEFT -->
   <div class="nav-left">
     <a routerLink="/">ItemsApp</a>
-    <a routerLink="/items">Items</a>
+
+    <a routerLink="/items">
+      {{ i18n.t('items') }}
+    </a>
 
     <a routerLink="/favorites" class="favorites-link">
-      ❤️ <span class="count">{{ favoritesCount$ | async }}</span>
+      ❤️
+      <span class="count">
+        {{ favoritesCount$ | async }}
+      </span>
     </a>
   </div>
 
-  <!-- Авторизованный пользователь -->
-  <div class="nav-right" *ngIf="auth.currentUser$ | async as user">
-    <span class="email">{{ user.email }}</span>
-    <a routerLink="/profile">Profile</a>
+  <!-- RIGHT -->
+  <div class="nav-right">
+    <!-- AUTHORIZED -->
+    <ng-container *ngIf="auth.currentUser$ | async as user; else guest">
+      <span class="email">{{ user.email }}</span>
 
-    <button class="logout-btn" (click)="logout()">Logout</button>
+      <a routerLink="/profile">
+        {{ i18n.t('profile') }}
+      </a>
+
+      <button class="logout-btn" (click)="logout()">
+        {{ i18n.t('logout') }}
+      </button>
+    </ng-container>
+
+    <!-- GUEST -->
+    <ng-template #guest>
+      <a routerLink="/login">
+        {{ i18n.t('login') }}
+      </a>
+
+      <a routerLink="/signup">
+        {{ i18n.t('signup') }}
+      </a>
+    </ng-template>
+
+    <!-- LANGUAGE SWITCH (ОДИН!) -->
+    <div class="lang-switch">
+      <button
+        class="lang-btn"
+        [class.active]="i18n.lang === 'en'"
+        (click)="changeLang('en')"
+      >
+        EN
+      </button>
+
+      <button
+        class="lang-btn"
+        [class.active]="i18n.lang === 'ru'"
+        (click)="changeLang('ru')"
+      >
+        RU
+      </button>
+
+      <button
+        class="lang-btn"
+        [class.active]="i18n.lang === 'kz'"
+        (click)="changeLang('kz')"
+      >
+        KZ
+      </button>
+    </div>
   </div>
-
-  <!-- Не авторизован -->
-  <div class="nav-right" *ngIf="!(auth.currentUser$ | async)">
-    <a routerLink="/login">Login</a>
-    <a routerLink="/signup">Signup</a>
-  </div>
-
 </nav>

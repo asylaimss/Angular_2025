@@ -1,48 +1,131 @@
-.filters-row {
+/* FILTERS BAR */
+.filters-bar {
   display: flex;
-  gap: 12px;
-  margin: 20px 0;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0;
 }
 
+.filters-bar input,
+.filters-bar select {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filters-bar input {
+  width: 240px;
+}
+
+.filters-bar select {
+  width: 170px;
+  cursor: pointer;
+}
+
+.filters-bar input:focus,
+.filters-bar select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* GRID */
 .items-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
 }
 
+/* CARD */
 .item-card {
   display: block;
-  padding: 14px;
-  border-radius: 12px;
-  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
   text-decoration: none;
-  color: #333;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform .2s ease;
+  color: #111827;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .item-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
+/* IMAGE */
 .item-card img {
   width: 100%;
   height: 180px;
   object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* INFO */
+.item-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
 }
 
 .brand {
-  color: #777;
   margin-top: 6px;
+  font-size: 13px;
+  color: #6b7280;
 }
 
 .price {
-  margin-top: 6px;
-  font-weight: bold;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
 }
 
+/* PAGINATION */
 .pagination {
-  margin: 20px 0;
-  text-align: center;
-  font-size: 16px;
+  margin: 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.pagination button:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters-bar input,
+  .filters-bar select {
+    width: 100%;
+  }
 }
