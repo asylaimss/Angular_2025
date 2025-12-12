@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
-
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { UserProfileService, UserProfile } from '@services/user-profile.service';
 import { AuthService } from '@services/auth.service';
 
@@ -14,6 +15,8 @@ import { AuthService } from '@services/auth.service';
   // 🔥 ОБЯЗАТЕЛЬНО Добавляем эти импорты!
   imports: [
     FormsModule,
+    CommonModule,
+    RouterModule,
     NgIf,
     NgFor,
   ]

@@ -58,7 +58,7 @@ export class LoginComponent {
       this.router.navigate(['/profile']);
 
     } catch (err: any) {
-      this.firebaseError = 'Неверный email или пароль';
+      this.firebaseError = 'Wrong email or password';
     }
   }
 }
